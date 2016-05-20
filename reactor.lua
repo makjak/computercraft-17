@@ -63,17 +63,17 @@ end
 function displaySingle(reactor)
     local info = getReactorInfo(reactor)
     monitor.setCursorPos(1, 1)
-    monitor.write("Reactor status: " .. info['status'] .. '  ')
+    monitor.write("Reactor status:   " .. info['status'] .. '    ')
     monitor.setCursorPos(1, 2)
-    monitor.write("Energy:         " .. info['energypercent'] .. '%  ')
+    monitor.write("Energy:           " .. info['energypercent'] .. '%    ')
     monitor.setCursorPos(1, 3)
-    monitor.write("Production:     " .. hydraApi.formatLargeNumber(info['energyproduction']) .. '  ')
+    monitor.write("Production:       " .. hydraApi.formatEnergy(info['energyproduction']) .. '      ')
     monitor.setCursorPos(1, 4)
-    monitor.write("Fuel temp:      " .. tostring(round(reactor.getFuelTemperature())) .. 'C ')
+    monitor.write("Fuel temp:        " .. tostring(round(reactor.getFuelTemperature())) .. 'C    ')
     monitor.setCursorPos(1, 5)
-    monitor.write("Fuel consumption" .. tostring(info['fuelconsumption']) .. " mB/t  ")
+    monitor.write("Fuel consumption: " .. tostring(info['fuelconsumption']) .. " mB/t    ")
     monitor.setCursorPos(1, 6)
-    monitor.write("Rods insertion: " .. tostring(round(info['rodaverage'])) .. '%  ')
+    monitor.write("Rods insertion:   " .. tostring(round(info['rodaverage'])) .. '%    ')
 end
 
 while true do

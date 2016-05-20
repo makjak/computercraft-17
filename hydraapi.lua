@@ -63,7 +63,7 @@ function getAllEnergyCells()
 	return getAllPeripherals("redstone_energy_cell")
 end
 
--- finds all redstone energy cells and wraps them
+-- finds all alvearies and wraps them
 function getAllAlvearies()
 	return getAllPeripherals("alveary")
 end
@@ -99,6 +99,10 @@ function printTable(t)
 	end
 end
 
+function round(number)
+	return math.floor(number * 10) / 10
+end
+
 function formatLargeNumber(amount)
         local postfix
  
@@ -115,11 +119,11 @@ function formatLargeNumber(amount)
                 postFix = ""         
         end
        
-        return string.format("%3.1f", amount) .. postFix
+        return tostring(round(amount)) .. postFix
 end
 
 function formatEnergy(amount)
-	return formatLargeNumber(amount) .. "MJ"
+	return formatLargeNumber(amount) .. "RF"
 end
 
 function formatPercent(fraction)
