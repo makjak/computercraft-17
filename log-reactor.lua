@@ -56,7 +56,7 @@ while true do
         -- row = row + 1
         print("Active:            " .. tostring(r.getActive()))
         print("Energy storage:    " .. info['energypercent'])
-        print("Energy production: " .. tostring(r.getEnergyProducedLastTick))
+        print("Energy production: " .. tostring(r.getEnergyProducedLastTick()))
         print("Fuel temperature:  " .. tostring(r.getFuelTemperature()))
 
         print("Rod insertion:     " .. info['rodaverage'])
