@@ -17,11 +17,13 @@ function getReactorInfo(reactor)
     if(reactor.getActive()) then
         info['status'] = 'Active'
     else
-        info['status'] = 'Active'
+        info['status'] = 'Inactive'
     end
     info['energyfraction'] = reactor.getEnergyStored() / 10000000
     info['energypercent'] = hydraApi.formatPercent(info['energyfraction'])
+    info['energyproduction'] = reactor.getEnergyProducedLastTick()
     info['rods'] = reactor.getNumberOfControlRods()
+    info['fuelconsumption'] = reactor.getFuelConsumedLastTick()
     local avg = 0
     for i = 0,info['rods'] - 1 do
       avg = avg + reactor.getControlRodLevel(i)
@@ -65,9 +67,13 @@ function displaySingle(reactor)
     monitor.setCursorPos(1, 2)
     monitor.write("Energy:         " .. info['energypercent'] .. '%  ')
     monitor.setCursorPos(1, 3)
-    monitor.write("Fuel temp:      " .. tostring(round(reactor.getFuelTemperature())) .. 'C ')
+    monitor.write("Production:     " .. hydraApi.formatLargeNumber(info['energyproduction']) .. '  ')
     monitor.setCursorPos(1, 4)
-    monitor.write("Rods insertion: " .. tostring(round(info['rodaverage'])) .. '% ')
+    monitor.write("Fuel temp:      " .. tostring(round(reactor.getFuelTemperature())) .. 'C ')
+    monitor.setCursorPos(1, 5)
+    monitor.write("Fuel consumption" .. tostring(info['fuelconsumption']) .. " mB/t  ")
+    monitor.setCursorPos(1, 6)
+    monitor.write("Rods insertion: " .. tostring(round(info['rodaverage'])) .. '%  ')
 end
 
 while true do
