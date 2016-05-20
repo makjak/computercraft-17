@@ -1,4 +1,4 @@
-local confModemSide = "back"
+local confModemSide = "left"
 
 if(not os.loadAPI("hydraApi")) then
         error("Could not load hydraApi")
