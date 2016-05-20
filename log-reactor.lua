@@ -54,10 +54,10 @@ while true do
         -- monitor.write(padLeft(round(r.getFuelTemperature()),6) .. ' ')
         -- monitor.write(padLeft(round(info['rodaverage']),4) .. ' ')
         -- row = row + 1
-        print("Active:            " .. r.getActive())
+        print("Active:            " .. tostring(r.getActive()))
         print("Energy storage:    " .. info['energypercent'])
-        print("Energy production: " .. r.getEnergyProducedLastTick)
-        print("Fuel temperature:  " .. r.getFuelTemperature())
+        print("Energy production: " .. tostring(r.getEnergyProducedLastTick))
+        print("Fuel temperature:  " .. tostring(r.getFuelTemperature()))
 
         print("Rod insertion:     " .. info['rodaverage'])
     end
