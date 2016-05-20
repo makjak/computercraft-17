@@ -127,14 +127,14 @@ function formatPercent(fraction)
 	return string.format("%3.1f", percent) .. "%"
 end
 
-function saveConfig(table, filename)
+function saveConfig(config, filename)
 	local handle = fs.open(filename, "w")
-	handle.write(data)
+	handle.write(textutils.serialize(config))
 	handle.close()
 end
 
 function loadConfig(filename)
-	local config = nil
+	local config
 	local handle = fs.open(filename, "r")
 	if(handle ~= nil) then
 		config = textutils.unserialize(handle.readAll())

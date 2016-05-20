@@ -14,11 +14,11 @@ function getReactorInfo(reactor)
     info['active'] =  reactor.getActive()
 
     local avg = 0
-    for i = 0,info['rods'] - 1 do
+    for i = 0,info['controlRods'] - 1 do
         avg = avg + reactor.getControlRodLevel(i)
     end
 
-    info['controlRodAvrage'] = avg / info['rods']
+    info['controlRodAvrage'] = avg / info['controlRods']
 
     return info
 end

@@ -30,7 +30,7 @@ function padLeft(str, len)
 end
 
 for k,v in pairs(reactorIds) do
-    reactor[k] = peripheral.wrap(v)
+    reactor[v] = peripheral.wrap(v)
     print("Connected to: " .. v)
 end
 
