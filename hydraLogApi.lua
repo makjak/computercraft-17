@@ -4,11 +4,6 @@ if(not os.loadAPI("hydraApi")) then
     error("Could not load hydraApi")
 end
 
-function xyzTupleToList(tuple)
-    local x, y, z = tuple
-    return {x, y, z}
-end
-
 function getReactorInfo(reactor)
     local info = {}
     info['energy'] = reactor.getEnergyStored()
@@ -19,8 +14,10 @@ function getReactorInfo(reactor)
     info['active'] =  reactor.getActive()
     info['fuelReactivity'] = reactor.getFuelReactivity()
     info['fuelConsumption'] = reactor.getFuelConsumedLastTick()
-    info['minCoordinate'] = xyzTupleToList(reactor.getMinimumCoordinate())
-    info['maxCoordinate'] = xyzTupleToList(reactor.getMaximumCoordinate())
+    local x, y, z = reactor.getMinimumCoordinate()
+    info['minCoordinate'] = {x, y, z }
+    x, y, z = reactor.getMaximumCoordinate()
+    info['maxCoordinate'] = {x, y, z }
 
     local avg = 0
     for i = 0,info['controlRods'] - 1 do
