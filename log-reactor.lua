@@ -4,6 +4,10 @@ if(not os.loadAPI("hydraApi")) then
     error("Could not load hydraApi")
 end
 
+if(not peripheral.isPresent(confModemSide)) then
+    error("No modem on side " .. confModemSide)
+end
+
 local modem = peripheral.wrap(confModemSide)
 -- local monitor = hydraApi.getMonitor()
 -- monitor.clear()
@@ -50,10 +54,12 @@ while true do
         -- monitor.write(padLeft(round(r.getFuelTemperature()),6) .. ' ')
         -- monitor.write(padLeft(round(info['rodaverage']),4) .. ' ')
         -- row = row + 1
+        print("Active:            " .. r.getActive())
+        print("Energy storage:    " .. info['energypercent'])
+        print("Energy production: " .. r.getEnergyProducedLastTick)
+        print("Fuel temperature:  " .. r.getFuelTemperature())
 
-        print(info['energypercent'])
-        print(r.getFuelTemperature())
-        print(info['rodaverage'])
+        print("Rod insertion:     " .. info['rodaverage'])
     end
 
     os.sleep(2)
