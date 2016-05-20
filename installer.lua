@@ -1,5 +1,5 @@
-local baseUrl = "http://pastebin.com/raw.php?i="
-local dataId = "MXUN1pmS"
+local baseUrl = "https://raw.githubusercontent.com/nielsutrecht/computercraft/master/"
+local dataId = "install-data.lua"
 local appTable = {}
 
 function download(id)
