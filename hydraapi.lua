@@ -127,6 +127,22 @@ function formatPercent(fraction)
 	return string.format("%3.1f", percent) .. "%"
 end
 
+function saveConfig(table, filename)
+	local handle = fs.open(filename, "w")
+	handle.write(data)
+	handle.close()
+end
+
+function loadConfig(filename)
+	local config = nil
+	local handle = fs.open(filename, "r")
+	if(handle ~= nil) then
+		config = textutils.unserialize(handle.readAll())
+		handle.close()
+	end
+	return config
+end
+
 -- Debug function: prints all connected peripherals
 function printPeripherals()
 	printTable(getPeripheralList())

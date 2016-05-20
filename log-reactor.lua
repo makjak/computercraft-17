@@ -4,6 +4,10 @@ if(not os.loadAPI("hydraApi")) then
     error("Could not load hydraApi")
 end
 
+if(not os.loadAPI("hydraLogApi")) then
+    error("Could not load hydraLogApi")
+end
+
 if(not peripheral.isPresent(confModemSide)) then
     error("No modem on side " .. confModemSide)
 end
@@ -15,21 +19,6 @@ local modem = peripheral.wrap(confModemSide)
 local reactorIds = modem.getNamesRemote()
 
 local reactor = {}
-
-function getReactorInfo(reactor)
-    local info = {}
-    info['energyfraction'] = reactor.getEnergyStored() / 10000000
-    info['energypercent'] = hydraApi.formatPercent(info['energyfraction'])
-    info['rods'] = reactor.getNumberOfControlRods()
-    local avg = 0
-    for i = 0,info['rods'] - 1 do
-        avg = avg + reactor.getControlRodLevel(i)
-    end
-
-    info['rodaverage'] = avg / info['rods']
-
-    return info
-end
 
 function round(number)
     return math.floor(number * 10) / 10
@@ -48,18 +37,7 @@ end
 while true do
     local row = 1
     for key, r in pairs(reactor) do
-        local info = getReactorInfo(r)
-        -- monitor.setCursorPos(1,row)
-        -- monitor.write(padLeft(info['energypercent'], 6) .. ' ')
-        -- monitor.write(padLeft(round(r.getFuelTemperature()),6) .. ' ')
-        -- monitor.write(padLeft(round(info['rodaverage']),4) .. ' ')
-        -- row = row + 1
-        print("Active:            " .. tostring(r.getActive()))
-        print("Energy storage:    " .. info['energypercent'])
-        print("Energy production: " .. tostring(r.getEnergyProducedLastTick()))
-        print("Fuel temperature:  " .. tostring(r.getFuelTemperature()))
-
-        print("Rod insertion:     " .. info['rodaverage'])
+        hydraLogApi.logReactor("test", key, r)
     end
 
     os.sleep(2)
