@@ -35,10 +35,8 @@ for k,v in pairs(reactorIds) do
 end
 
 while true do
-    local row = 1
     for key, r in pairs(reactor) do
         hydraLogApi.logReactor("test", key, r)
     end
-
     os.sleep(2)
 end

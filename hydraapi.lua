@@ -68,6 +68,18 @@ function getAllAlvearies()
 	return getAllPeripherals("alveary")
 end
 
+-- finds all BigReactor reactors and wraps them
+
+function getAllBigReactors()
+    return getAllPeripherals("BigReactors-Reactor")
+end
+
+-- finds all BigReactor turbines and wraps them
+
+function getAllBigReactorTurbines()
+    return getAllPeripherals("BigReactors-Turbine")
+end
+
 -- String split function, splits pString on pPattern
 function split(pString, pPattern)
    local Table = {}  -- NOTE: use {n = 0} in Lua-5.0

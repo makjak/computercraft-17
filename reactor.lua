@@ -80,6 +80,6 @@ function displaySingle(reactor)
 end
 
 while true do
-    displaySingle(reactor[1])
+    displayList()
     os.sleep(2)
 end

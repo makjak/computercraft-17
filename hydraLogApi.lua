@@ -1,4 +1,4 @@
-local urlbase = "http://api.niels.nu/cclogger/"
+local urlbase = "http://localhost:8080/reactor"
 
 if(not os.loadAPI("hydraApi")) then
     error("Could not load hydraApi")
@@ -30,9 +30,10 @@ function getReactorInfo(reactor)
 end
 
 function logReactor(base, reactorid, reactor)
-    local url = urlbase .. base .. "/reactor/" .. reactorid
+    -- local url = urlbase .. base .. "/reactor/" .. reactorid
     print(url)
-    print(textutils.serializeJSON(getReactorInfo(reactor)))
+    local json = textutils.serializeJSON(getReactorInfo(reactor))
+    http.post(urlbase, json)
 end
 
 
