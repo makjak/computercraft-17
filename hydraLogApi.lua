@@ -24,7 +24,7 @@ function getReactorInfo(reactor)
         avg = avg + reactor.getControlRodLevel(i)
     end
 
-    info['controlRodAvrage'] = avg / info['controlRods']
+    info['controlRodAverage'] = avg / info['controlRods']
 
     return info
 end

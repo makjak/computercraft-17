@@ -6,6 +6,7 @@
 -- { app = "base-bees", deps = {"hydraApi"}, id="qe0ViX8i", saveas="startup"  },
 -- { app = "base-ae-dump", deps = {"hydraApi"}, id="hUsQFbpi", saveas="aed"  },
     { app = "base-reactor", deps = {"hydraApi"}, id="reactor.lua", saveas="rea"  },
+    { app = "timers", deps = {"hydraApi"}, id="timers.lua", saveas="timers"  },
     { app = "log-reactor", deps = {"hydraApi", "hydraLogApi"}, id="log-reactor.lua", saveas="logr"  },
     { app = "hydraApi", deps = nil, id="hydraapi.lua", saveas=nil, api=true },
     { app = "hydraLogApi", deps = {"hydraApi"}, id="hydraLogApi.lua", saveas=nil, api=true }
