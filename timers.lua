@@ -42,7 +42,7 @@ function createTimers()
     for k,v in pairs(config) do
         timers[k] = {}
         timers[k]["state"] = 0
-        timers[k]["count"] = config[k]["high"]
+        timers[k]["count"] = config[k]["low"]
     end
 end
 
@@ -58,7 +58,7 @@ function writeTimers()
         monitor.write(config[k]["side"] .. " ")
         monitor.setCursorPos(7, row)
         monitor.setTextColor(config[k]["color"])
-        monitor.write("*** ")
+        monitor.write("XXX ")
         monitor.setTextColor(colors.white)
         local highLow = 'H'
         if(timers[k]["state"] == 0) then

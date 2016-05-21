@@ -49,13 +49,16 @@ for k,v in pairs(reactorIds) do
 end
 
 function displayList()
-    local row = 1
+    local row = 2
+    monitor.setCursorPos(1,1)
+    monitor.write("Store  RF/t   Temp.  Fuel")
     for key, r in pairs(reactor) do
         local info = getReactorInfo(r)
         monitor.setCursorPos(1,row)
         monitor.write(padLeft(info['energypercent'], 6) .. ' ')
-        monitor.write(padLeft(round(r.getFuelTemperature()),6) .. ' ')
-        monitor.write(padLeft(round(info['rodaverage']),4) .. ' ')
+        monitor.write(padLeft(hydraApi.formatEnergy(info['energyproduction']), 6) .. ' ')
+        monitor.write(padLeft(round(reactor.getFuelTemperature()), 6) .. ' ')
+        monitor.write(padLeft(round(info['fuelconsumption']), 6) .. ' ')
         row = row + 1
     end
 end
