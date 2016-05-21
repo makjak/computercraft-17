@@ -33,7 +33,7 @@ function tick()
     for k, v in pairs(dirty) do
         if(dirty[k]) then
             redstone.setBundledOutput(k, sides[k])
-            print(k .. ": " .. tostring(sides[k))
+            print(k .. ": " .. tostring(sides[k]))
         end
     end
 end
@@ -53,16 +53,20 @@ function writeTimers()
     monitor.clear()
     local row = 1
     for k,v in pairs(config) do
+        monitor.setTextColor(colors.white)
         monitor.setCursorPos(1, row)
-        monitor.write(formatForScreen(k))
+        monitor.write(config[k]["side"] .. " ")
+        monitor.setCursorPos(7, row)
+        monitor.setTextColor(config[k]["color"])
+        monitor.write("*** ")
+        monitor.setTextColor(colors.white)
+        local highLow = 'H'
+        if(timers[k]["state"] == 0) then
+            highLow = "L"
+        end
+        monitor.write(highLow .. " " .. tostring(timers[k]["count"]))
         row = row + 1
     end
-end
-
-function formatForScreen(k)
-    local value = tostring(k) .. ": " .. tostring(timers[k]["state"]) ..  " - " .. tostring(timers[k]["count"])
-
-    return value
 end
 
 function loadConfig()
