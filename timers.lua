@@ -24,9 +24,9 @@ function writeTimers()
     end
     monitor.clear()
     local row = 1
-    for k,v in pairs(reactorIds) do
+    for k,v in pairs(config) do
         monitor.setCursorPos(1, row)
-        monitor.write()
+        monitor.write(formatForScreen(k))
         row = row + 1
     end
 end
@@ -54,6 +54,7 @@ while true do
     tick()
     writeTimers()
     sleep(1)
+    print("Tick")
 end
 
 
