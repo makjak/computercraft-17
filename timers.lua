@@ -7,12 +7,13 @@ local config
 local monitor = hydraApi.getMonitor()
 
 function tick()
-    -- redstone.setBundledOutput("left", 1)
     local dirty = {}
+    local sides = {}
     for k,v in pairs(config) do
+        local side = config[k]["side"]
         timers[k]["count"] = timers[k]["count"] - 1
         if(timers[k]["count"] <= 0) then
-            dirty[config[k]["side"]] = true
+            dirty[side] = true
             if(timers[k]["state"] == 0) then
                 timers[k]["state"] = 1
                 timers[k]["count"] = config[k]["high"]
@@ -21,8 +22,20 @@ function tick()
                 timers[k]["count"] = config[k]["low"]
             end
         end
+        if(sides[side] == nil) then
+            sides[side] = 0
+        end
+        if(timers[k]["state"] == 1) then
+            sides[side] = sides[side] + config[k]["color"]
+        end
     end
-    print(dirty)
+
+    for k, v in pairs(dirty) do
+        if(dirty[k]) then
+            redstone.setBundledOutput(k, sides[k])
+            print(k .. ": " .. tostring(sides[k))
+        end
+    end
 end
 
 function createTimers()
