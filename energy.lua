@@ -19,8 +19,10 @@ function displayList()
     monitor.write("RF         %")
     for key, c in pairs(capacitors) do
         local stored = c.getEnergyStored() * config[key]['size']
+        local perc = hydraApi.formatPercent(c.getEnergyStored() / c.getMaxEnergyStored())
         monitor.setCursorPos(1,row)
         monitor.write(hydraApi.padLeft(hydraApi.formatEnergy(stored), 10) .. ' ')
+        monitor.write(hydraApi.padLeft(perc, 4) .. ' ')
         row = row + 1
     end
 end
