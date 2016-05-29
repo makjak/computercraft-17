@@ -159,6 +159,11 @@ function loadConfig(filename)
 	return config
 end
 
+function padLeft(str, len)
+	str = '' .. str
+	return  string.rep(' ', len - #str) .. str
+end
+
 -- Debug function: prints all connected peripherals
 function printPeripherals()
 	printTable(getPeripheralList())

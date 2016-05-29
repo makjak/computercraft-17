@@ -17,7 +17,7 @@ function displayList()
     monitor.write("RF     %")
     for key, c in pairs(capacitors) do
         monitor.setCursorPos(1,row)
-        monitor.write(padLeft(hydraApi.formatEnergy(c.getEnergyStored()), 8) .. ' ')
+        monitor.write(hydraApi.padLeft(hydraApi.formatEnergy(c.getEnergyStored()), 8) .. ' ')
         row = row + 1
     end
 end
