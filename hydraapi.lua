@@ -161,7 +161,11 @@ end
 
 function padLeft(str, len)
 	str = '' .. str
-	return  string.rep(' ', len - #str) .. str
+	local reps = len - #str
+	if (reps < 0) then
+		reps = 0
+	end
+	return  string.rep(' ', reps) .. str
 end
 
 -- Debug function: prints all connected peripherals
