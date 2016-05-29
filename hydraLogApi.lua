@@ -1,5 +1,9 @@
 local urlbase = "http://localhost:8080/reactor"
 
+local headers = {
+    ["Content-Type"] = "application/json"
+}
+
 if(not os.loadAPI("hydraApi")) then
     error("Could not load hydraApi")
 end
@@ -30,10 +34,10 @@ function getReactorInfo(reactor)
 end
 
 function logReactor(base, reactorid, reactor)
-    -- local url = urlbase .. base .. "/reactor/" .. reactorid
-    print(url)
     local json = textutils.serializeJSON(getReactorInfo(reactor))
-    http.post(urlbase, json)
+    local handle = http.post(urlbase, json, headers)
+
+    return handle ~= nil and handle.getResponseCode() == 200
 end
 
 
